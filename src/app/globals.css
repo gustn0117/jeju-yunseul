@@ -95,6 +95,27 @@ html {
   .delay-200 { animation-delay: 200ms; }
   .delay-400 { animation-delay: 400ms; }
   .delay-600 { animation-delay: 600ms; }
+
+  /* Form inputs — minimal underline style */
+  .luxe-input {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+    padding: 12px 0;
+    font-size: 15px;
+    color: var(--foreground);
+    transition: border-color 0.3s ease;
+  }
+
+  .luxe-input:focus {
+    outline: none;
+    border-bottom-color: var(--foreground);
+  }
+
+  .luxe-input::placeholder {
+    color: rgba(0, 0, 0, 0.35);
+  }
 }
 
 @keyframes kenBurns {
