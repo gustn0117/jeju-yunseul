@@ -133,11 +133,27 @@ export default function RoomDetail({
     <main>
       <Header solid />
 
-      <section className="pt-32 pb-12 md:pt-40 md:pb-16 bg-[var(--background)]">
-        <div className="max-w-6xl mx-auto px-6">
-          <h1 className="font-serif text-3xl md:text-4xl text-center mb-10 tracking-wide">
-            객실안내
+      <section className="relative h-[42vh] min-h-[320px] flex items-end overflow-hidden">
+        <ImagePlaceholder
+          className="absolute inset-0 ken-burns"
+          showLabel={false}
+          src="/images/interior-ocean.jpg"
+          alt={room.heroLabel}
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/35 to-black/55" />
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pb-12 md:pb-16 text-white">
+          <p className="text-xs tracking-[0.3em] uppercase opacity-80 mb-3 fade-in-up">
+            Accommodations · {room.floor}
+          </p>
+          <h1 className="font-serif text-4xl md:text-6xl tracking-wide fade-in-up delay-200">
+            {room.title}
           </h1>
+        </div>
+      </section>
+
+      <section className="py-10 md:py-12 bg-[var(--background)] border-b border-[var(--foreground)]/10">
+        <div className="max-w-6xl mx-auto px-6">
           <nav className="flex items-center justify-center gap-2 md:gap-4 flex-wrap">
             {FLOOR_ORDER.map((f) => {
               const active = f.key === key;
@@ -156,17 +172,6 @@ export default function RoomDetail({
               );
             })}
           </nav>
-        </div>
-      </section>
-
-      <section className="pb-16 md:pb-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <ImagePlaceholder
-            src="/images/interior-ocean.jpg"
-            alt={room.heroLabel}
-            priority
-            className="h-[400px] md:h-[520px] rounded-lg scale-in hover-zoom"
-          />
         </div>
       </section>
 

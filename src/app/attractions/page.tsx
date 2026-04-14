@@ -47,15 +47,28 @@ export default function AttractionsPage() {
     <main>
       <Header solid />
 
-      <section className="pt-32 pb-12 md:pt-40 md:pb-16 bg-[var(--background)]">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-xs tracking-[0.25em] uppercase text-[var(--accent-light)] mb-4">
+      <section className="relative h-[42vh] min-h-[320px] flex items-end overflow-hidden">
+        <ImagePlaceholder
+          className="absolute inset-0 ken-burns"
+          showLabel={false}
+          src="/images/gwangchigi.jpg"
+          alt="광치기 해변과 성산일출봉"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/35 to-black/55" />
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pb-12 md:pb-16 text-white">
+          <p className="text-xs tracking-[0.3em] uppercase opacity-80 mb-3 fade-in-up">
             Around Yunseul
           </p>
-          <h1 className="font-serif text-3xl md:text-5xl tracking-wide">
+          <h1 className="font-serif text-4xl md:text-6xl tracking-wide fade-in-up delay-200">
             주변관광지
           </h1>
-          <p className="mt-6 text-[15px] opacity-70 leading-relaxed max-w-xl mx-auto">
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 bg-[var(--background)]">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <p className="text-[15px] opacity-70 leading-relaxed">
             제주의 동쪽, 윤슬을 중심으로 걸어서 혹은 가까이서 만날 수 있는 풍경들을 소개합니다.
           </p>
         </div>
