@@ -329,6 +329,14 @@ export default function RoomDetail({
                   가격 문의: <span className="font-medium">010-5452-2323</span>
                 </p>
               )}
+              <div className="mt-10 pt-10 border-t border-white/10">
+                <Link
+                  href={`/reserve?room=${key}`}
+                  className="inline-block border border-white/70 text-white px-10 py-4 text-sm tracking-widest hover:bg-white hover:text-[var(--dark-bg)] transition-all duration-300"
+                >
+                  이 객실 예약하기
+                </Link>
+              </div>
             </div>
           </div>
         </div>

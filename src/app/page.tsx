@@ -25,7 +25,7 @@ function HeroSection() {
           창 너머의 풍경마저 당신의 휴식이 되는 곳 제주 윤슬.
         </p>
         <Link
-          href="/#rooms"
+          href="/reserve"
           className="inline-block border border-white/60 text-white px-8 py-3 text-sm tracking-widest hover:bg-white hover:text-[var(--foreground)] transition-all duration-300 fade-in-up delay-400"
         >
           예약하기
@@ -50,7 +50,7 @@ function WelcomeSection() {
             2F, 3F, 4F 층별 한 채씩 있는 독립적인 공간이며 엘리베이터로 편안하게 접근할 수 있습니다.
           </p>
           <Link
-            href="/#rooms"
+            href="/reserve"
             className="inline-block border border-[var(--accent)] text-[var(--accent)] px-8 py-3 text-sm tracking-widest hover:bg-[var(--accent)] hover:text-white transition-all duration-300"
           >
             예약하기
