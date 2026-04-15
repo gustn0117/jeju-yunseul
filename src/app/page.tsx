@@ -44,10 +44,13 @@ function WelcomeSection() {
             Welcome
           </h2>
           <p className="text-[var(--foreground)]/80 leading-relaxed mb-6 text-[15px]">
-            섭지코지와 성산일출봉 사이에 자리 잡은 윤슬은 통창과 개별 테라스 등 모던하지만 실용적인 인테리어를 갖춘 감성 숙소입니다.
+            섭지코지와 성산일출봉 사이, 제주 동쪽의 작은 마을에 자리한 제주윤슬은 통창 너머로 드넓은 제주 바다를 온전히 품은 프리미엄 감성 숙소입니다.
+          </p>
+          <p className="text-[var(--foreground)]/80 leading-relaxed mb-6 text-[15px]">
+            2층부터 4층까지 층별 독립형 구조로 되어 있으며, 각 층마다 개별 테라스와 주방, 통창 오션뷰를 갖추고 있어 연인, 가족, 친구 누구와 함께해도 프라이빗한 여유를 온전히 즐기실 수 있습니다.
           </p>
           <p className="text-[var(--foreground)]/80 leading-relaxed mb-10 text-[15px]">
-            2F, 3F, 4F 층별 한 채씩 있는 독립적인 공간이며 엘리베이터로 편안하게 접근할 수 있습니다.
+            한달살기, 일주일살기 등 장기 숙박도 환영하며 장박 시 할인 혜택이 제공됩니다.
           </p>
           <Link
             href="/reserve"
@@ -79,26 +82,29 @@ function RoomsSection() {
     {
       slug: "2f",
       floor: "2F",
+      name: "비치테라스",
       type: "2Bed / 2Bath",
-      desc: "가장 넓고 쾌적한 유닛이므로 6명까지 지낼 수 있는 공간입니다.",
+      desc: "성산일출봉과 제주 바다가 한눈에 펼쳐지는 가장 넓은 객실. 가족 여행객과 단체 여행객에게 가장 인기가 높은 공간입니다.",
       capacity: "최대인원수: 6명",
-      tags: ["테라스", "오션뷰"],
+      tags: ["테라스", "오션뷰", "바베큐"],
     },
     {
       slug: "3f",
       floor: "3F",
+      name: "오션테라스",
       type: "1Bed / 1Bath",
-      desc: "야외 테라스에서 바베큐 하면서 바라보는 성산이 일품인 객실입니다.",
+      desc: "통창 너머로 펼쳐지는 시원한 오션뷰와 프라이빗한 개별 테라스. 연인, 소가족, 감성 여행객분들이 가장 선호하시는 객실입니다.",
       capacity: "최대인원수: 4명",
-      tags: ["테라스", "오션뷰"],
+      tags: ["테라스", "오션뷰", "바베큐"],
     },
     {
       slug: "4f",
       floor: "4F",
+      name: "스카이테라스",
       type: "1Bed / 1Bath",
-      desc: "아늑하고 쾌적한 실내에서 보이는 멋진 풍경을 감상하실 수 있습니다.",
+      desc: "제주윤슬의 가장 높고 조용한 공간. 높은 층에서 누리는 파노라마 오션뷰와 욕조가 매력인 객실입니다.",
       capacity: "최대인원수: 3명",
-      tags: ["테라스", "오션뷰"],
+      tags: ["테라스", "오션뷰", "욕조", "바베큐"],
     },
   ];
 
@@ -120,7 +126,7 @@ function RoomsSection() {
               </Link>
               <div className="p-6">
                 <h3 className="font-serif text-xl mb-1">
-                  {room.floor}{" "}
+                  {room.floor} {room.name}{" "}
                   <span className="text-sm opacity-50 font-sans">
                     ({room.type})
                   </span>
@@ -140,6 +146,47 @@ function RoomsSection() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function NearbySection() {
+  const spots = [
+    { icon: "⛰️", name: "성산일출봉", time: "차로 7분", desc: "유네스코 세계 자연유산, 해돋이 명소" },
+    { icon: "🌲", name: "섭지코지", time: "차로 3분", desc: "푸른 바다와 붉은 오름이 어우러진 해안 절경" },
+    { icon: "🌊", name: "광치기해변", time: "차로 3분", desc: "성산일출봉이 한눈에 보이는 일출 명소" },
+    { icon: "🐠", name: "아쿠아플라넷 제주", time: "도보 10분", desc: "국내 최대 규모의 해양 테마파크" },
+    { icon: "🚢", name: "성산포항 여객터미널", time: "차로 8분", desc: "우도로 이동할 수 있는 선착장" },
+  ];
+
+  return (
+    <section className="py-24 md:py-32 bg-[var(--background)]">
+      <div className="max-w-6xl mx-auto px-6">
+        <h2 className="font-serif text-3xl md:text-4xl text-center mb-4 tracking-wide">
+          주변 관광지
+        </h2>
+        <p className="text-center text-[15px] opacity-60 mb-14">
+          제주 동부 여행의 중심지에서 하루 일정만으로도 제주의 대표 명소를 두루 즐기실 수 있습니다.
+        </p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          {spots.map((s) => (
+            <div key={s.name} className="bg-[var(--warm-bg)] rounded-xl p-6 text-center">
+              <div className="text-3xl mb-3">{s.icon}</div>
+              <h3 className="font-serif text-base mb-1">{s.name}</h3>
+              <p className="text-xs text-[var(--accent)] mb-2">{s.time}</p>
+              <p className="text-xs opacity-60 leading-relaxed">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+        <div className="text-center mt-10">
+          <Link
+            href="/attractions"
+            className="inline-flex items-center gap-2 text-sm text-[var(--accent)] border-b border-[var(--accent)]/40 pb-0.5 hover:border-[var(--accent)] transition-colors"
+          >
+            자세히 보기 <ArrowRight />
+          </Link>
         </div>
       </div>
     </section>
@@ -223,6 +270,7 @@ export default function Home() {
       <HeroSection />
       <WelcomeSection />
       <RoomsSection />
+      <NearbySection />
       <ReviewSection />
       <DirectionsSection />
       <Footer />

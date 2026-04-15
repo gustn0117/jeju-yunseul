@@ -10,9 +10,9 @@ import DateRangePicker from "../components/DateRangePicker";
 import { ROOM_CAPACITY } from "@/lib/types";
 
 const ROOM_OPTIONS = [
-  { slug: "2f", floor: "2F", type: "2 Bed · 2 Bath", capacity: 6, en: "Terrace Suite" },
-  { slug: "3f", floor: "3F", type: "1 Bed · 1 Bath", capacity: 4, en: "Sunrise Loft" },
-  { slug: "4f", floor: "4F", type: "1 Bed · 1 Bath", capacity: 3, en: "Skyline Room" },
+  { slug: "2f", floor: "2F", type: "2 Bed · 2 Bath", capacity: 6, en: "비치테라스" },
+  { slug: "3f", floor: "3F", type: "1 Bed · 1 Bath", capacity: 4, en: "오션테라스" },
+  { slug: "4f", floor: "4F", type: "1 Bed · 1 Bath", capacity: 3, en: "스카이테라스" },
 ];
 
 function ReserveForm() {
