@@ -286,7 +286,8 @@ function ReviewSection() {
         src="/images/gwangchigi.jpg"
         alt="광치기 해변에서 바라본 성산일출봉"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/65" />
+      <div className="absolute inset-0 bg-black/70" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30" />
 
       <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
         <p className="text-xs tracking-[0.3em] uppercase opacity-70 mb-6">
