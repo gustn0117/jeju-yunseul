@@ -276,10 +276,26 @@ function NearbySection() {
 
 function ReviewSection() {
   return (
-    <section id="review" className="py-24 md:py-32 bg-[var(--dark-bg)] text-[var(--dark-text)]">
-      <div className="max-w-3xl mx-auto px-6 text-center">
-        <div className="text-6xl text-[var(--accent)] opacity-40 font-serif mb-8">&ldquo;</div>
-        <p className="font-serif text-lg md:text-xl leading-loose tracking-wide">
+    <section
+      id="review"
+      className="relative py-32 md:py-44 text-white overflow-hidden"
+    >
+      <ImagePlaceholder
+        className="absolute inset-0 ken-burns"
+        showLabel={false}
+        src="/images/gwangchigi.jpg"
+        alt="광치기 해변에서 바라본 성산일출봉"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/65" />
+
+      <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+        <p className="text-xs tracking-[0.3em] uppercase opacity-70 mb-6">
+          A Word From Our Guest
+        </p>
+        <div className="text-6xl opacity-50 font-serif mb-6 leading-none">
+          &ldquo;
+        </div>
+        <p className="font-serif text-lg md:text-2xl leading-loose tracking-wide">
           왼쪽으로는 성산일출봉이 보이고
           <br />
           오른쪽에는 해가 떠오르고 있었어요.
@@ -290,9 +306,18 @@ function ReviewSection() {
           <br />
           감상하게 될 줄 몰랐어요.
         </p>
-        <div className="text-6xl text-[var(--accent)] opacity-40 font-serif mt-8">&rdquo;</div>
-        <button className="inline-block mt-8 text-sm text-[var(--accent-light)] border-b border-[var(--accent-light)]/40 pb-0.5 hover:border-[var(--accent-light)] transition-colors tracking-wide">
-          풀 리뷰 보러가기 &gt;
+        <div className="text-6xl opacity-50 font-serif mt-6 leading-none">
+          &rdquo;
+        </div>
+        <div className="mt-10 flex flex-col items-center gap-4">
+          <div className="w-10 h-px bg-white/40" />
+          <p className="text-[11px] tracking-[0.3em] uppercase opacity-70">
+            — A Recent Stay
+          </p>
+        </div>
+        <button className="inline-flex items-center gap-3 mt-10 text-xs tracking-[0.3em] uppercase border-b border-white/40 pb-1 hover:border-white transition-colors">
+          풀 리뷰 보러가기
+          <ArrowRight />
         </button>
       </div>
     </section>
