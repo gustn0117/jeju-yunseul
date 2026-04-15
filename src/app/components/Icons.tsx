@@ -98,6 +98,103 @@ export function ArrowRight({ className = "" }: IconProps) {
   );
 }
 
+export function MountainIcon({ className = "" }: IconProps) {
+  return (
+    <svg
+      className={`${base} ${className}`}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3 19l6-9 4 6 2-3 6 6z" />
+      <circle cx="17.5" cy="6.5" r="1.4" />
+    </svg>
+  );
+}
+
+export function CliffIcon({ className = "" }: IconProps) {
+  return (
+    <svg
+      className={`${base} ${className}`}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3 17l4-7 4 5 3-3 7 5" />
+      <path d="M3 21h18" />
+      <path d="M16 21c.8-1.2 2.2-1.2 3 0" opacity="0.6" />
+      <path d="M5 21c.8-1.2 2.2-1.2 3 0" opacity="0.6" />
+    </svg>
+  );
+}
+
+export function WaveIcon({ className = "" }: IconProps) {
+  return (
+    <svg
+      className={`${base} ${className}`}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M2 9c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2" />
+      <path d="M2 14c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2" opacity="0.7" />
+      <path d="M2 19c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2" opacity="0.4" />
+    </svg>
+  );
+}
+
+export function FishIcon({ className = "" }: IconProps) {
+  return (
+    <svg
+      className={`${base} ${className}`}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3 12c3-5 8-5 12 0-4 5-9 5-12 0z" />
+      <path d="M15 12l5-3v6z" />
+      <circle cx="7" cy="11" r="0.8" fill="currentColor" />
+      <path d="M3 16c1 0 1-1 2-1" opacity="0.6" />
+    </svg>
+  );
+}
+
+export function ShipIcon({ className = "" }: IconProps) {
+  return (
+    <svg
+      className={`${base} ${className}`}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3 17h18l-2 4H5z" />
+      <path d="M5 17V9h14v8" />
+      <path d="M12 5v4" />
+      <path d="M9 9l3-4 3 4" />
+    </svg>
+  );
+}
+
 export function MarkLogo({ className = "" }: IconProps) {
   return (
     <svg

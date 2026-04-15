@@ -4,7 +4,14 @@ import Link from "next/link";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ImagePlaceholder from "./components/ImagePlaceholder";
-import { ArrowRight } from "./components/Icons";
+import {
+  ArrowRight,
+  MountainIcon,
+  CliffIcon,
+  WaveIcon,
+  FishIcon,
+  ShipIcon,
+} from "./components/Icons";
 
 function HeroSection() {
   return (
@@ -40,9 +47,15 @@ function WelcomeSection() {
     <section className="py-24 md:py-32 bg-[var(--background)]">
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 className="font-serif text-3xl md:text-4xl text-[var(--accent)] mb-8 tracking-wide">
-            Welcome
+          <p className="text-xs tracking-[0.3em] uppercase text-[var(--accent-light)] mb-4">
+            01 — Welcome
+          </p>
+          <h2 className="font-serif text-3xl md:text-5xl text-[var(--foreground)] mb-6 tracking-wide leading-tight">
+            창 너머의 풍경마저
+            <br />
+            당신의 휴식이 되도록
           </h2>
+          <div className="w-10 h-px bg-[var(--foreground)]/40 mb-8" />
           <p className="text-[var(--foreground)]/80 leading-relaxed mb-6 text-[15px]">
             섭지코지와 성산일출봉 사이, 제주 동쪽의 작은 마을에 자리한 제주윤슬은 통창 너머로 드넓은 제주 바다를 온전히 품은 프리미엄 감성 숙소입니다.
           </p>
@@ -111,35 +124,48 @@ function RoomsSection() {
   return (
     <section id="rooms" className="py-24 md:py-32 bg-[var(--warm-bg)]">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="font-serif text-3xl md:text-4xl text-center mb-16 tracking-wide">
-          객실안내
-        </h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {rooms.map((room) => (
-            <div key={room.floor} className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
-              <Link href={`/rooms/${room.slug}`} className="block hover-zoom">
+        <div className="text-center mb-16 md:mb-20">
+          <p className="text-xs tracking-[0.3em] uppercase text-[var(--accent-light)] mb-4">
+            02 — Accommodations
+          </p>
+          <h2 className="font-serif text-3xl md:text-5xl tracking-wide mb-6">
+            객실안내
+          </h2>
+          <div className="w-10 h-px bg-[var(--foreground)]/40 mx-auto" />
+        </div>
+        <div className="grid md:grid-cols-3 gap-8 md:gap-10">
+          {rooms.map((room, i) => (
+            <div
+              key={room.floor}
+              className="group bg-white border border-[var(--foreground)]/8 overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:border-[var(--foreground)]/20"
+            >
+              <Link href={`/rooms/${room.slug}`} className="block hover-zoom relative">
                 <ImagePlaceholder
                   src="/images/interior-ocean.jpg"
                   alt={`${room.floor} 객실`}
-                  className="h-56"
+                  className="h-64"
                 />
+                <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm font-serif text-xs tracking-[0.25em] px-3 py-1.5">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
               </Link>
-              <div className="p-6">
-                <h3 className="font-serif text-xl mb-1">
-                  {room.floor} {room.name}{" "}
-                  <span className="text-sm opacity-50 font-sans">
-                    ({room.type})
-                  </span>
+              <div className="p-7 md:p-8">
+                <p className="text-[10px] tracking-[0.3em] uppercase opacity-50 mb-3">
+                  {room.floor} · {room.type}
+                </p>
+                <h3 className="font-serif text-2xl tracking-wide mb-1">
+                  {room.name}
                 </h3>
-                <p className="text-sm opacity-70 leading-relaxed mt-3 mb-4">
+                <div className="w-8 h-px bg-[var(--foreground)]/30 my-5" />
+                <p className="text-sm opacity-70 leading-[1.9] mb-6">
                   {room.desc}
                 </p>
-                <p className="text-xs opacity-50 mb-4">
-                  {room.capacity} | {room.tags.join(" | ")}
+                <p className="text-[11px] tracking-[0.15em] uppercase opacity-50 mb-6">
+                  {room.capacity} · {room.tags.join(" · ")}
                 </p>
                 <Link
                   href={`/rooms/${room.slug}`}
-                  className="inline-flex items-center gap-2 text-sm text-[var(--accent)] border-b border-[var(--accent)]/40 pb-0.5 hover:border-[var(--accent)] transition-colors"
+                  className="inline-flex items-center gap-3 text-xs tracking-[0.3em] uppercase text-[var(--foreground)] border-b border-[var(--foreground)]/30 pb-1 hover:border-[var(--foreground)] transition-colors"
                 >
                   상세보기 <ArrowRight />
                 </Link>
@@ -154,38 +180,93 @@ function RoomsSection() {
 
 function NearbySection() {
   const spots = [
-    { icon: "⛰️", name: "성산일출봉", time: "차로 7분", desc: "유네스코 세계 자연유산, 해돋이 명소" },
-    { icon: "🌲", name: "섭지코지", time: "차로 3분", desc: "푸른 바다와 붉은 오름이 어우러진 해안 절경" },
-    { icon: "🌊", name: "광치기해변", time: "차로 3분", desc: "성산일출봉이 한눈에 보이는 일출 명소" },
-    { icon: "🐠", name: "아쿠아플라넷 제주", time: "도보 10분", desc: "국내 최대 규모의 해양 테마파크" },
-    { icon: "🚢", name: "성산포항 여객터미널", time: "차로 8분", desc: "우도로 이동할 수 있는 선착장" },
+    {
+      Icon: MountainIcon,
+      name: "성산일출봉",
+      en: "Seongsan Ilchulbong",
+      time: "차로 7분",
+      desc: "유네스코 세계 자연유산, 해돋이 명소",
+    },
+    {
+      Icon: CliffIcon,
+      name: "섭지코지",
+      en: "Seopjikoji",
+      time: "차로 3분",
+      desc: "푸른 바다와 붉은 오름이 어우러진 해안 절경",
+    },
+    {
+      Icon: WaveIcon,
+      name: "광치기해변",
+      en: "Gwangchigi Beach",
+      time: "차로 3분",
+      desc: "성산일출봉이 한눈에 보이는 일출 명소",
+    },
+    {
+      Icon: FishIcon,
+      name: "아쿠아플라넷 제주",
+      en: "Aqua Planet",
+      time: "도보 10분",
+      desc: "국내 최대 규모의 해양 테마파크",
+    },
+    {
+      Icon: ShipIcon,
+      name: "성산포항 여객터미널",
+      en: "Seongsan Port",
+      time: "차로 8분",
+      desc: "우도로 이동할 수 있는 선착장",
+    },
   ];
 
   return (
     <section className="py-24 md:py-32 bg-[var(--background)]">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="font-serif text-3xl md:text-4xl text-center mb-4 tracking-wide">
-          주변 관광지
-        </h2>
-        <p className="text-center text-[15px] opacity-60 mb-14">
-          제주 동부 여행의 중심지에서 하루 일정만으로도 제주의 대표 명소를 두루 즐기실 수 있습니다.
-        </p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
-          {spots.map((s) => (
-            <div key={s.name} className="bg-[var(--warm-bg)] rounded-xl p-6 text-center">
-              <div className="text-3xl mb-3">{s.icon}</div>
-              <h3 className="font-serif text-base mb-1">{s.name}</h3>
-              <p className="text-xs text-[var(--accent)] mb-2">{s.time}</p>
-              <p className="text-xs opacity-60 leading-relaxed">{s.desc}</p>
+        <div className="text-center mb-16 md:mb-20">
+          <p className="text-xs tracking-[0.3em] uppercase text-[var(--accent-light)] mb-4">
+            Around Yunseul
+          </p>
+          <h2 className="font-serif text-3xl md:text-5xl tracking-wide mb-6">
+            주변 관광지
+          </h2>
+          <div className="w-10 h-px bg-[var(--foreground)]/40 mx-auto mb-6" />
+          <p className="text-[15px] opacity-60 leading-relaxed max-w-xl mx-auto">
+            제주 동부의 중심에 자리한 윤슬에서, 하루 일정만으로도
+            <br className="hidden md:block" />
+            제주의 대표 명소를 두루 만나실 수 있습니다.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-px bg-[var(--foreground)]/10 border border-[var(--foreground)]/10">
+          {spots.map((s, i) => (
+            <div
+              key={s.name}
+              className="group bg-white p-8 text-center transition-colors duration-500 hover:bg-[var(--warm-bg)]"
+            >
+              <p className="font-serif text-xs tracking-[0.25em] opacity-40 mb-6">
+                {String(i + 1).padStart(2, "0")}
+              </p>
+              <div className="w-12 h-12 mx-auto mb-6 rounded-full border border-[var(--foreground)]/15 flex items-center justify-center text-[var(--foreground)] transition-colors duration-500 group-hover:border-[var(--foreground)]/50">
+                <s.Icon className="w-5 h-5" />
+              </div>
+              <h3 className="font-serif text-base mb-1 tracking-wide">{s.name}</h3>
+              <p className="text-[10px] tracking-[0.25em] uppercase opacity-40 mb-4">
+                {s.en}
+              </p>
+              <div className="w-6 h-px bg-[var(--foreground)]/20 mx-auto mb-4" />
+              <p className="text-[11px] tracking-widest uppercase opacity-60 mb-3">
+                {s.time}
+              </p>
+              <p className="text-xs opacity-60 leading-[1.9]">{s.desc}</p>
             </div>
           ))}
         </div>
-        <div className="text-center mt-10">
+
+        <div className="text-center mt-14">
           <Link
             href="/attractions"
-            className="inline-flex items-center gap-2 text-sm text-[var(--accent)] border-b border-[var(--accent)]/40 pb-0.5 hover:border-[var(--accent)] transition-colors"
+            className="inline-flex items-center gap-3 text-xs tracking-[0.3em] uppercase text-[var(--foreground)] border-b border-[var(--foreground)]/30 pb-1 hover:border-[var(--foreground)] transition-colors"
           >
-            자세히 보기 <ArrowRight />
+            자세히 보기
+            <ArrowRight />
           </Link>
         </div>
       </div>
