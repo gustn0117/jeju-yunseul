@@ -194,7 +194,7 @@ export default function RoomDetail({
         </div>
       </section>
 
-      <section className="py-10 md:py-12 bg-[var(--background)] border-b border-[var(--foreground)]/10">
+      <section className="py-10 md:py-12 bg-[var(--background)]">
         <div className="max-w-6xl mx-auto px-6">
           <nav className="flex items-center justify-center gap-2 md:gap-4 flex-wrap">
             {FLOOR_ORDER.map((f) => {
