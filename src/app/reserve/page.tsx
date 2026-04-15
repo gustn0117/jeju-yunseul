@@ -6,6 +6,7 @@ import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ImagePlaceholder from "../components/ImagePlaceholder";
+import DateRangePicker from "../components/DateRangePicker";
 import { ROOM_CAPACITY } from "@/lib/types";
 
 const ROOM_OPTIONS = [
@@ -50,17 +51,6 @@ function ReserveForm() {
     return diff > 0 ? Math.round(diff) : 0;
   }, [form.check_in, form.check_out]);
 
-  const today = useMemo(() => {
-    const d = new Date();
-    return d.toISOString().split("T")[0];
-  }, []);
-
-  const minCheckOut = useMemo(() => {
-    if (!form.check_in) return today;
-    const d = new Date(form.check_in);
-    d.setDate(d.getDate() + 1);
-    return d.toISOString().split("T")[0];
-  }, [form.check_in, today]);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -267,44 +257,12 @@ function ReserveForm() {
 
             {/* Step 2 — Schedule */}
             <Step number="02" title="일정 · 인원">
-              <div className="grid md:grid-cols-12 gap-6">
-                <Field label="체크인" required className="md:col-span-5">
-                  <input
-                    type="date"
-                    required
-                    min={today}
-                    value={form.check_in}
-                    onChange={(e) => update("check_in", e.target.value)}
-                    className="luxe-input"
-                  />
-                </Field>
-                <div className="hidden md:flex md:col-span-2 items-end justify-center pb-4">
-                  <div className="text-center">
-                    <p className="font-display text-3xl tabular-nums text-[var(--foreground)]/80">
-                      {nights || "—"}
-                    </p>
-                    <p className="text-[10px] tracking-[0.3em] uppercase opacity-50 mt-1">
-                      Nights
-                    </p>
-                  </div>
-                </div>
-                <Field label="체크아웃" required className="md:col-span-5">
-                  <input
-                    type="date"
-                    required
-                    min={minCheckOut}
-                    value={form.check_out}
-                    onChange={(e) => update("check_out", e.target.value)}
-                    className="luxe-input"
-                  />
-                </Field>
-              </div>
-
-              <div className="md:hidden text-center -mt-2">
-                <p className="text-xs tracking-[0.3em] uppercase opacity-50">
-                  총 {nights || 0}박
-                </p>
-              </div>
+              <DateRangePicker
+                checkIn={form.check_in}
+                checkOut={form.check_out}
+                onCheckInChange={(v) => update("check_in", v)}
+                onCheckOutChange={(v) => update("check_out", v)}
+              />
 
               <Field label={`인원수 (최대 ${maxGuests}명)`} required>
                 <div className="flex items-center gap-4">
