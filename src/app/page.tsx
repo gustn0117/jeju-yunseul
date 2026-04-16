@@ -357,11 +357,14 @@ function DirectionsSection() {
               </p>
             </div>
           </div>
-          <div>
-            <ImagePlaceholder
-              src="/images/yunseul-exterior.jpg"
-              alt="제주 윤슬 외관"
-              className="h-80 rounded-xl"
+          <div className="h-80 md:h-full min-h-[320px] rounded-xl overflow-hidden border border-[var(--foreground)]/10">
+            <iframe
+              src="https://maps.google.com/maps?q=%EC%A0%9C%EC%A3%BC+%EC%84%9C%EA%B7%80%ED%8F%AC%EC%8B%9C+%EC%84%B1%EC%82%B0%EC%9D%8D+%EC%84%AD%EC%A7%80%EC%BD%94%EC%A7%80%EB%A1%9C+43&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              className="w-full h-full border-0 grayscale"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="제주 윤슬 위치"
+              allowFullScreen
             />
           </div>
         </div>
