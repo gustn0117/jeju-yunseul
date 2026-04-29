@@ -77,6 +77,9 @@ const ROOMS: Record<string, Room> = {
     poster: "/images/room-2f-hero.jpg",
     video: "/videos/room-2f.mp4",
     gallery: [
+      ...Array.from({ length: 8 }, (_, i) =>
+        `/images/rooms/2f/${String(i + 1).padStart(2, "0")}.jpg`
+      ),
       "/images/rooms/common/01.jpg",
       "/images/rooms/common/02.jpg",
       "/images/rooms/common/03.jpg",
