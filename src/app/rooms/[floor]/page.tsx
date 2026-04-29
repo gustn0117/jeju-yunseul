@@ -26,7 +26,6 @@ type Room = {
   checkOut: string;
   prices: Record<Season, Price> | null;
   heroLabel: string;
-  video?: string;
   poster?: string;
   gallery?: string[];
 };
@@ -74,8 +73,7 @@ const ROOMS: Record<string, Room> = {
       성수기: { weekday: "370,000원", weekend: "390,000원" },
     },
     heroLabel: "2F 비치테라스",
-    video: "/videos/room-2f.mp4",
-    poster: "/images/interior-ocean.jpg",
+    poster: "/images/room-2f-hero.jpg",
   },
   "3f": {
     floor: "3F",
@@ -118,8 +116,7 @@ const ROOMS: Record<string, Room> = {
       성수기: { weekday: "270,000원", weekend: "290,000원" },
     },
     heroLabel: "3F 오션테라스",
-    video: "/videos/room-3f.mp4",
-    poster: "/images/rooms/3f/22.jpg",
+    poster: "/images/room-3f-hero.jpg",
     gallery: Array.from({ length: 24 }, (_, i) =>
       `/images/rooms/3f/${String(i + 1).padStart(2, "0")}.jpg`
     ),
@@ -162,8 +159,7 @@ const ROOMS: Record<string, Room> = {
     checkOut: "10:00",
     prices: null,
     heroLabel: "4F 스카이테라스",
-    video: "/videos/room-4f.mp4",
-    poster: "/images/interior-ocean.jpg",
+    poster: "/images/room-4f-hero.jpg",
   },
 };
 
@@ -188,26 +184,13 @@ export default function RoomDetail({
       <Header solid />
 
       <section className="relative h-[58vh] min-h-[420px] flex items-end overflow-hidden">
-        {room.video ? (
-          <video
-            className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={room.poster ?? "/images/interior-ocean.jpg"}
-          >
-            <source src={room.video} type="video/mp4" />
-          </video>
-        ) : (
-          <ImagePlaceholder
-            className="absolute inset-0 ken-burns"
-            showLabel={false}
-            src={room.poster ?? "/images/interior-ocean.jpg"}
-            alt={room.heroLabel}
-            priority
-          />
-        )}
+        <ImagePlaceholder
+          className="absolute inset-0 ken-burns"
+          showLabel={false}
+          src={room.poster ?? "/images/interior-ocean.jpg"}
+          alt={room.heroLabel}
+          priority
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/30 to-black/55" />
         <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pb-12 md:pb-16 text-white">
           <p className="text-xs tracking-[0.3em] uppercase opacity-80 mb-3 fade-in-up">
