@@ -27,6 +27,7 @@ type Room = {
   prices: Record<Season, Price> | null;
   heroLabel: string;
   poster?: string;
+  video?: string;
   gallery?: string[];
 };
 
@@ -74,6 +75,7 @@ const ROOMS: Record<string, Room> = {
     },
     heroLabel: "2F 비치테라스",
     poster: "/images/room-2f-hero.jpg",
+    video: "/videos/room-2f.mp4",
   },
   "3f": {
     floor: "3F",
@@ -117,6 +119,7 @@ const ROOMS: Record<string, Room> = {
     },
     heroLabel: "3F 오션테라스",
     poster: "/images/room-3f-hero.jpg",
+    video: "/videos/room-3f.mp4",
     gallery: Array.from({ length: 24 }, (_, i) =>
       `/images/rooms/3f/${String(i + 1).padStart(2, "0")}.jpg`
     ),
@@ -160,6 +163,7 @@ const ROOMS: Record<string, Room> = {
     prices: null,
     heroLabel: "4F 스카이테라스",
     poster: "/images/room-4f-hero.jpg",
+    video: "/videos/room-4f.mp4",
   },
 };
 
@@ -270,6 +274,43 @@ export default function RoomDetail({
           </aside>
         </div>
       </section>
+
+      {room.video && (
+        <section className="pb-20 md:pb-28 bg-[var(--dark-bg)] text-[var(--dark-text)] py-20 md:py-28">
+          <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-12 gap-10 md:gap-16 items-center">
+            <div className="md:col-span-5 md:col-start-1">
+              <p className="text-xs tracking-[0.3em] uppercase opacity-60 mb-4">
+                Video Tour
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl tracking-wide leading-tight mb-6">
+                {room.title}
+                <br />
+                둘러보기
+              </h2>
+              <div className="w-10 h-px bg-white/40 mb-6" />
+              <p className="text-[15px] opacity-70 leading-[2]">
+                사진만으로는 전해지지 않는 공간의 분위기와 동선을
+                짧은 영상으로 만나보세요. 통창 너머의 바다, 햇살이 머무는
+                거실, 테라스의 결까지 — 입실 전 미리 그려보실 수 있도록
+                준비했습니다.
+              </p>
+            </div>
+            <div className="md:col-span-5 md:col-start-7 flex justify-center">
+              <div className="relative w-full max-w-[280px] aspect-[9/16] bg-black overflow-hidden border border-white/10">
+                <video
+                  className="absolute inset-0 w-full h-full object-cover"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster={room.poster}
+                >
+                  <source src={room.video} type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {room.gallery && room.gallery.length > 0 && (
         <section className="pb-20 md:pb-28">
