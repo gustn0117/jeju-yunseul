@@ -26,6 +26,9 @@ type Room = {
   checkOut: string;
   prices: Record<Season, Price> | null;
   heroLabel: string;
+  video?: string;
+  poster?: string;
+  gallery?: string[];
 };
 
 const ROOMS: Record<string, Room> = {
@@ -71,6 +74,8 @@ const ROOMS: Record<string, Room> = {
       성수기: { weekday: "370,000원", weekend: "390,000원" },
     },
     heroLabel: "2F 비치테라스",
+    video: "/videos/room-2f.mp4",
+    poster: "/images/interior-ocean.jpg",
   },
   "3f": {
     floor: "3F",
@@ -113,6 +118,11 @@ const ROOMS: Record<string, Room> = {
       성수기: { weekday: "270,000원", weekend: "290,000원" },
     },
     heroLabel: "3F 오션테라스",
+    video: "/videos/room-3f.mp4",
+    poster: "/images/rooms/3f/22.jpg",
+    gallery: Array.from({ length: 24 }, (_, i) =>
+      `/images/rooms/3f/${String(i + 1).padStart(2, "0")}.jpg`
+    ),
   },
   "4f": {
     floor: "4F",
@@ -152,6 +162,8 @@ const ROOMS: Record<string, Room> = {
     checkOut: "10:00",
     prices: null,
     heroLabel: "4F 스카이테라스",
+    video: "/videos/room-4f.mp4",
+    poster: "/images/interior-ocean.jpg",
   },
 };
 
@@ -175,15 +187,28 @@ export default function RoomDetail({
     <main>
       <Header solid />
 
-      <section className="relative h-[42vh] min-h-[320px] flex items-end overflow-hidden">
-        <ImagePlaceholder
-          className="absolute inset-0 ken-burns"
-          showLabel={false}
-          src="/images/interior-ocean.jpg"
-          alt={room.heroLabel}
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/35 to-black/55" />
+      <section className="relative h-[58vh] min-h-[420px] flex items-end overflow-hidden">
+        {room.video ? (
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={room.poster ?? "/images/interior-ocean.jpg"}
+          >
+            <source src={room.video} type="video/mp4" />
+          </video>
+        ) : (
+          <ImagePlaceholder
+            className="absolute inset-0 ken-burns"
+            showLabel={false}
+            src={room.poster ?? "/images/interior-ocean.jpg"}
+            alt={room.heroLabel}
+            priority
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/30 to-black/55" />
         <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pb-12 md:pb-16 text-white">
           <p className="text-xs tracking-[0.3em] uppercase opacity-80 mb-3 fade-in-up">
             Accommodations · {room.floor}
@@ -262,6 +287,41 @@ export default function RoomDetail({
           </aside>
         </div>
       </section>
+
+      {room.gallery && room.gallery.length > 0 && (
+        <section className="pb-20 md:pb-28">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="flex items-end justify-between mb-10 md:mb-12 border-b border-[var(--foreground)]/10 pb-6">
+              <div>
+                <p className="text-xs tracking-[0.25em] uppercase text-[var(--accent-light)] mb-3">
+                  Gallery
+                </p>
+                <h2 className="font-serif text-2xl md:text-3xl tracking-wide">
+                  객실 둘러보기
+                </h2>
+              </div>
+              <p className="text-xs tracking-[0.2em] uppercase opacity-50">
+                {String(room.gallery.length).padStart(2, "0")} Photos
+              </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
+              {room.gallery.map((src, i) => (
+                <div
+                  key={src}
+                  className="relative overflow-hidden hover-zoom aspect-[4/3]"
+                >
+                  <ImagePlaceholder
+                    src={src}
+                    alt={`${room.heroLabel} 갤러리 ${i + 1}`}
+                    className="absolute inset-0"
+                    showLabel={false}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="pb-20 md:pb-28 bg-[var(--warm-bg)] py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12 md:gap-16">
