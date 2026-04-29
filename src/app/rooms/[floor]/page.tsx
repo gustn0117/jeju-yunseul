@@ -76,6 +76,11 @@ const ROOMS: Record<string, Room> = {
     heroLabel: "2F 비치테라스",
     poster: "/images/room-2f-hero.jpg",
     video: "/videos/room-2f.mp4",
+    gallery: [
+      "/images/rooms/common/01.jpg",
+      "/images/rooms/common/02.jpg",
+      "/images/rooms/common/03.jpg",
+    ],
   },
   "3f": {
     floor: "3F",
@@ -120,9 +125,14 @@ const ROOMS: Record<string, Room> = {
     heroLabel: "3F 오션테라스",
     poster: "/images/room-3f-hero.jpg",
     video: "/videos/room-3f.mp4",
-    gallery: Array.from({ length: 24 }, (_, i) =>
-      `/images/rooms/3f/${String(i + 1).padStart(2, "0")}.jpg`
-    ),
+    gallery: [
+      ...Array.from({ length: 24 }, (_, i) =>
+        `/images/rooms/3f/${String(i + 1).padStart(2, "0")}.jpg`
+      ),
+      "/images/rooms/common/01.jpg",
+      "/images/rooms/common/02.jpg",
+      "/images/rooms/common/03.jpg",
+    ],
   },
   "4f": {
     floor: "4F",
@@ -164,6 +174,14 @@ const ROOMS: Record<string, Room> = {
     heroLabel: "4F 스카이테라스",
     poster: "/images/room-4f-hero.jpg",
     video: "/videos/room-4f.mp4",
+    gallery: [
+      ...Array.from({ length: 22 }, (_, i) =>
+        `/images/rooms/4f/${String(i + 1).padStart(2, "0")}.jpg`
+      ),
+      "/images/rooms/common/01.jpg",
+      "/images/rooms/common/02.jpg",
+      "/images/rooms/common/03.jpg",
+    ],
   },
 };
 

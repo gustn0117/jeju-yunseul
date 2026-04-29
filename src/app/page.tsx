@@ -83,7 +83,11 @@ function WelcomeSection() {
             alt="거실과 오션뷰"
             className="col-span-2 h-72 rounded-lg hover-zoom"
           />
-          <ImagePlaceholder label="마샬 스피커" className="h-48 rounded-lg" />
+          <ImagePlaceholder
+            src="/images/exterior/02.jpg"
+            alt="윤슬 앞 일출봉 전경"
+            className="h-48 rounded-lg hover-zoom"
+          />
           <ImagePlaceholder
             src="/images/gwangchigi.jpg"
             alt="광치기 해변과 성산일출봉"
@@ -279,6 +283,47 @@ function NearbySection() {
   );
 }
 
+function SceneryGallery() {
+  const photos = Array.from({ length: 7 }, (_, i) =>
+    `/images/exterior/${String(i + 1).padStart(2, "0")}.jpg`
+  );
+  return (
+    <section className="py-24 md:py-32 bg-[var(--background)]">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center mb-16 md:mb-20">
+          <p className="text-xs tracking-[0.3em] uppercase text-[var(--accent-light)] mb-4 tabular">
+            04 — Scenery
+          </p>
+          <h2 className="font-serif text-3xl md:text-5xl tracking-wide mb-6 balance">
+            윤슬에서 마주하는 풍경
+          </h2>
+          <div className="w-10 h-px bg-[var(--foreground)]/40 mx-auto mb-6" />
+          <p className="text-[15px] opacity-65 leading-relaxed max-w-xl mx-auto">
+            창문을 열고 발걸음을 옮기면 닿는, 윤슬을 둘러싼 제주의 자연.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+          {photos.map((src, i) => (
+            <div
+              key={src}
+              className={`relative overflow-hidden hover-zoom aspect-[4/3] ${
+                i === 0 ? "col-span-2 md:col-span-2 md:row-span-2 md:aspect-auto" : ""
+              }`}
+            >
+              <ImagePlaceholder
+                src={src}
+                alt={`윤슬 외부 전경 ${i + 1}`}
+                className="absolute inset-0"
+                showLabel={false}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ReviewSection() {
   return (
     <section
@@ -386,6 +431,7 @@ export default function Home() {
       <WelcomeSection />
       <RoomsSection />
       <NearbySection />
+      <SceneryGallery />
       <ReviewSection />
       <DirectionsSection />
       <Footer />
