@@ -100,7 +100,7 @@ export default function AttractionsPage() {
                   className="h-72 md:h-96 rounded-lg hover-zoom"
                 />
                 <div>
-                  <p className="text-xs tracking-[0.2em] uppercase text-[var(--accent-light)] mb-4">
+                  <p className="text-xs tracking-[0.3em] uppercase text-[var(--accent-light)] mb-4">
                     {String(i + 1).padStart(2, "0")} — {a.en}
                   </p>
                   <h2 className="font-serif text-2xl md:text-4xl tracking-wide mb-3">
@@ -128,7 +128,7 @@ export default function AttractionsPage() {
           </p>
           <a
             href="/#directions"
-            className="inline-block border border-[var(--accent)] text-[var(--accent)] px-8 py-3 text-sm tracking-widest hover:bg-[var(--accent)] hover:text-white transition-all duration-300"
+            className="inline-block border border-[var(--accent)] text-[var(--accent)] px-10 py-3.5 text-xs tracking-[0.32em] uppercase hover:bg-[var(--accent)] hover:text-white transition-all duration-500"
           >
             오시는 길 보기
           </a>

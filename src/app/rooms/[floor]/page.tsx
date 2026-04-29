@@ -187,7 +187,7 @@ export default function RoomDetail({
     <main>
       <Header solid />
 
-      <section className="relative h-[58vh] min-h-[420px] flex items-end overflow-hidden">
+      <section className="relative h-[42vh] min-h-[320px] flex items-end overflow-hidden">
         <ImagePlaceholder
           className="absolute inset-0 ken-burns"
           showLabel={false}
@@ -232,7 +232,7 @@ export default function RoomDetail({
       <section className="pb-20 md:pb-28">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12 md:gap-16">
           <div className="md:col-span-2">
-            <p className="text-xs tracking-[0.2em] uppercase text-[var(--accent-light)] mb-4">
+            <p className="text-xs tracking-[0.3em] uppercase text-[var(--accent-light)] mb-4">
               Room Detail
             </p>
             <h2 className="font-serif text-2xl md:text-3xl mb-8 tracking-wide">
@@ -317,7 +317,7 @@ export default function RoomDetail({
           <div className="max-w-6xl mx-auto px-6">
             <div className="flex items-end justify-between mb-10 md:mb-12 border-b border-[var(--foreground)]/10 pb-6">
               <div>
-                <p className="text-xs tracking-[0.25em] uppercase text-[var(--accent-light)] mb-3">
+                <p className="text-xs tracking-[0.3em] uppercase text-[var(--accent-light)] mb-3">
                   Gallery
                 </p>
                 <h2 className="font-serif text-2xl md:text-3xl tracking-wide">
@@ -350,7 +350,7 @@ export default function RoomDetail({
       <section className="pb-20 md:pb-28 bg-[var(--warm-bg)] py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12 md:gap-16">
           <div>
-            <p className="text-xs tracking-[0.2em] uppercase text-[var(--accent-light)] mb-4">
+            <p className="text-xs tracking-[0.3em] uppercase text-[var(--accent-light)] mb-4">
               Amenities
             </p>
             <h2 className="font-serif text-2xl md:text-3xl tracking-wide">
@@ -374,7 +374,7 @@ export default function RoomDetail({
       <section className="py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12 md:gap-16">
           <div>
-            <p className="text-xs tracking-[0.2em] uppercase text-[var(--accent-light)] mb-4">
+            <p className="text-xs tracking-[0.3em] uppercase text-[var(--accent-light)] mb-4">
               Policy
             </p>
             <h2 className="font-serif text-2xl md:text-3xl tracking-wide">
@@ -401,7 +401,7 @@ export default function RoomDetail({
       <section className="py-20 md:py-28 bg-[var(--background)]">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12 md:gap-16">
           <div>
-            <p className="text-xs tracking-[0.2em] uppercase text-[var(--accent-light)] mb-4">
+            <p className="text-xs tracking-[0.3em] uppercase text-[var(--accent-light)] mb-4">
               Recommend
             </p>
             <h2 className="font-serif text-2xl md:text-3xl tracking-wide">
@@ -422,7 +422,7 @@ export default function RoomDetail({
         </div>
       </section>
 
-      <section className="pb-24 md:pb-32 bg-[var(--dark-bg)] text-[var(--dark-text)] py-20 md:py-28">
+      <section className="bg-[var(--dark-bg)] text-[var(--dark-text)] py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-12 md:gap-16 mb-12">
             <div>
@@ -487,7 +487,7 @@ export default function RoomDetail({
               <div className="mt-10 pt-10 border-t border-white/10">
                 <Link
                   href={`/reserve?room=${key}`}
-                  className="inline-block border border-white/70 text-white px-10 py-4 text-sm tracking-widest hover:bg-white hover:text-[var(--dark-bg)] transition-all duration-300"
+                  className="inline-block border border-white/70 text-white px-10 py-3.5 text-xs tracking-[0.32em] uppercase hover:bg-white hover:text-[var(--dark-bg)] transition-all duration-500"
                 >
                   이 객실 예약하기
                 </Link>

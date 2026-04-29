@@ -108,7 +108,7 @@ function ReserveForm() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/"
-              className="inline-block border border-[var(--accent)] text-[var(--accent)] px-10 py-3.5 text-sm tracking-widest hover:bg-[var(--accent)] hover:text-white transition-all duration-300 w-full sm:w-auto"
+              className="inline-block border border-[var(--accent)] text-[var(--accent)] px-10 py-3.5 text-xs tracking-[0.32em] uppercase hover:bg-[var(--accent)] hover:text-white transition-all duration-500 w-full sm:w-auto"
             >
               홈으로 돌아가기
             </Link>
@@ -155,7 +155,7 @@ function ReserveForm() {
           {/* Sidebar */}
           <aside className="md:col-span-4 space-y-10">
             <div>
-              <p className="text-xs tracking-[0.25em] uppercase text-[var(--accent-light)] mb-4">
+              <p className="text-xs tracking-[0.3em] uppercase text-[var(--accent-light)] mb-4">
                 Direct Booking
               </p>
               <h2 className="font-serif text-2xl md:text-3xl leading-snug mb-6 tracking-wide">
@@ -187,7 +187,7 @@ function ReserveForm() {
             </ul>
 
             <div className="border-t border-[var(--foreground)]/10 pt-8">
-              <p className="text-xs tracking-[0.25em] uppercase text-[var(--accent-light)] mb-4">
+              <p className="text-xs tracking-[0.3em] uppercase text-[var(--accent-light)] mb-4">
                 Direct Contact
               </p>
               <a

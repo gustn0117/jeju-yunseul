@@ -30,7 +30,7 @@ export default function Header({ solid = false }: { solid?: boolean }) {
         scrolled ? "bg-white/95 backdrop-blur-sm shadow-sm" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link
           href="/"
           className={`font-serif text-lg tracking-wider transition-colors ${
