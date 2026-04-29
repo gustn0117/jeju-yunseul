@@ -141,8 +141,8 @@ function RoomsSection() {
             >
               <Link href={`/rooms/${room.slug}`} className="block hover-zoom relative">
                 <ImagePlaceholder
-                  src="/images/interior-ocean.jpg"
-                  alt={`${room.floor} 객실`}
+                  src={`/images/room-${room.slug}-hero.jpg`}
+                  alt={`${room.floor} ${room.name}`}
                   className="h-64"
                 />
                 <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm font-serif text-xs tracking-[0.25em] px-3 py-1.5">
