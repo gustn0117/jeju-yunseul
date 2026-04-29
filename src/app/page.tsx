@@ -23,17 +23,20 @@ function HeroSection() {
         alt="제주 윤슬 거실과 오션뷰"
         priority
       />
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/30 to-black/55" />
       <div className="relative z-10 text-center text-white px-4">
-        <p className="font-serif text-lg md:text-2xl leading-relaxed tracking-wide mb-2 fade-in-up">
+        <p className="text-[10px] md:text-xs tracking-[0.4em] uppercase opacity-80 mb-6 fade-in-up text-veil">
+          A Private Retreat · Jeju
+        </p>
+        <p className="font-serif text-lg md:text-2xl leading-relaxed tracking-wide mb-2 fade-in-up text-veil balance">
           섭지코지와 성산일출봉 사이,
         </p>
-        <p className="font-serif text-lg md:text-2xl leading-relaxed tracking-wide mb-10 fade-in-up delay-200">
+        <p className="font-serif text-lg md:text-2xl leading-relaxed tracking-wide mb-10 fade-in-up delay-200 text-veil balance">
           창 너머의 풍경마저 당신의 휴식이 되는 곳 제주 윤슬.
         </p>
         <Link
           href="/reserve"
-          className="inline-block border border-white/60 text-white px-8 py-3 text-sm tracking-widest hover:bg-white hover:text-[var(--foreground)] transition-all duration-300 fade-in-up delay-400"
+          className="inline-block border border-white/60 text-white px-10 py-3.5 text-xs tracking-[0.32em] uppercase hover:bg-white hover:text-[var(--foreground)] transition-all duration-500 fade-in-up delay-400"
         >
           예약하기
         </Link>
@@ -47,27 +50,29 @@ function WelcomeSection() {
     <section className="py-24 md:py-32 bg-[var(--background)]">
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <p className="text-xs tracking-[0.3em] uppercase text-[var(--accent-light)] mb-4">
+          <p className="text-xs tracking-[0.32em] uppercase text-[var(--accent-light)] mb-4 tabular">
             01 — Welcome
           </p>
-          <h2 className="font-serif text-3xl md:text-5xl text-[var(--foreground)] mb-6 tracking-wide leading-tight">
+          <h2 className="font-serif text-3xl md:text-5xl text-[var(--foreground)] mb-6 tracking-wide leading-tight balance">
             창 너머의 풍경마저
             <br />
             당신의 휴식이 되도록
           </h2>
-          <div className="w-10 h-px bg-[var(--foreground)]/40 mb-8" />
-          <p className="text-[var(--foreground)]/80 leading-relaxed mb-6 text-[15px]">
+          <span className="ornament text-[var(--foreground)]/60 mb-8">
+            <span className="dot" />
+          </span>
+          <p className="lead mb-6 mt-8">
             섭지코지와 성산일출봉 사이, 제주 동쪽의 작은 마을에 자리한 제주윤슬은 통창 너머로 드넓은 제주 바다를 온전히 품은 프리미엄 감성 숙소입니다.
           </p>
-          <p className="text-[var(--foreground)]/80 leading-relaxed mb-6 text-[15px]">
+          <p className="text-[var(--foreground)]/75 leading-[1.95] mb-6 text-[15px] pretty">
             2층부터 4층까지 층별 독립형 구조로 되어 있으며, 각 층마다 개별 테라스와 주방, 통창 오션뷰를 갖추고 있어 연인, 가족, 친구 누구와 함께해도 프라이빗한 여유를 온전히 즐기실 수 있습니다.
           </p>
-          <p className="text-[var(--foreground)]/80 leading-relaxed mb-10 text-[15px]">
+          <p className="text-[var(--foreground)]/75 leading-[1.95] mb-10 text-[15px] pretty">
             한달살기, 일주일살기 등 장기 숙박도 환영하며 장박 시 할인 혜택이 제공됩니다.
           </p>
           <Link
             href="/reserve"
-            className="inline-block border border-[var(--accent)] text-[var(--accent)] px-8 py-3 text-sm tracking-widest hover:bg-[var(--accent)] hover:text-white transition-all duration-300"
+            className="inline-block border border-[var(--accent)] text-[var(--accent)] px-10 py-3.5 text-xs tracking-[0.32em] uppercase hover:bg-[var(--accent)] hover:text-white transition-all duration-500"
           >
             예약하기
           </Link>

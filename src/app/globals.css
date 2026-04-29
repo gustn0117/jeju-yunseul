@@ -25,15 +25,42 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Noto Sans KR', sans-serif;
+  font-feature-settings: "kern", "liga", "calt", "ss01", "tnum";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  word-break: keep-all;
+  line-break: strict;
+  overflow-wrap: break-word;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+::selection {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+/* Custom scrollbar — light, minimal, only on scrollable areas */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.28); background-clip: padding-box; }
+
 .font-serif {
   font-family: 'Noto Serif KR', serif;
+  font-feature-settings: "kern", "liga", "calt";
 }
+
+/* Tabular numbers in places that show counts/dates */
+.tabular { font-variant-numeric: tabular-nums; }
 
 /* Image placeholder — lives in components layer so Tailwind utilities
    (e.g. `absolute inset-0`) can override position as needed. */
@@ -116,6 +143,113 @@ html {
   .luxe-input::placeholder {
     color: rgba(0, 0, 0, 0.35);
   }
+
+  /* Caret color hint on focus */
+  .luxe-input { caret-color: var(--foreground); }
+
+  /* Lead paragraph — slightly larger, looser leading */
+  .lead {
+    font-size: 16px;
+    line-height: 2;
+    color: rgba(0, 0, 0, 0.78);
+    letter-spacing: 0.005em;
+  }
+
+  /* Drop cap — applies to first paragraph after the heading.
+     Use `.has-drop-cap` on the wrapper. */
+  .has-drop-cap > p:first-of-type::first-letter {
+    font-family: 'Noto Serif KR', serif;
+    font-weight: 500;
+    float: left;
+    font-size: 3.4em;
+    line-height: 1;
+    margin: 0.05em 0.18em -0.05em 0;
+    color: var(--foreground);
+  }
+
+  /* Image frame — subtle inset hairline + outer offset shadow on hover */
+  .image-frame {
+    position: relative;
+    overflow: hidden;
+  }
+  .image-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    pointer-events: none;
+    transition: border-color 0.5s ease;
+  }
+  .image-frame:hover::after {
+    border-color: rgba(255, 255, 255, 0.32);
+  }
+
+  /* Ornamental divider — hairline + small dot in middle */
+  .ornament {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    color: currentColor;
+  }
+  .ornament::before,
+  .ornament::after {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.45;
+  }
+  .ornament > .dot {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+  }
+
+  /* Hero text shadow — improves legibility over photos w/o darkening overlay */
+  .text-veil {
+    text-shadow: 0 1px 24px rgba(0, 0, 0, 0.35), 0 1px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Animated underline link — used on small caps links */
+  .link-luxe {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 4px;
+    color: currentColor;
+    transition: opacity 0.3s ease;
+  }
+  .link-luxe::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.35;
+    transform-origin: right center;
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.3s ease;
+  }
+  .link-luxe:hover::after {
+    opacity: 1;
+    transform-origin: left center;
+  }
+
+  /* Refined focus ring — accessible without ugly outline */
+  :where(button, a, input, select, textarea):focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 1px var(--foreground);
+    border-radius: 1px;
+  }
+
+  /* Korean text balance — prevents awkward orphans on short blocks */
+  .balance { text-wrap: balance; }
+  .pretty  { text-wrap: pretty; }
 }
 
 @keyframes kenBurns {
