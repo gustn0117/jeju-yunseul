@@ -353,7 +353,11 @@ export default function RoomDetail({
               {room.gallery.map((src, i) => (
                 <div
                   key={src}
-                  className="relative overflow-hidden hover-zoom aspect-[4/3]"
+                  className={`relative overflow-hidden hover-zoom ${
+                    i === 0
+                      ? "col-span-2 aspect-[4/3] md:col-span-1 md:aspect-[4/3]"
+                      : "aspect-[3/4] md:aspect-[4/3]"
+                  }`}
                 >
                   <ImagePlaceholder
                     src={src}

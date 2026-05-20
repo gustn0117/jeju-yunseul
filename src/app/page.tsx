@@ -77,21 +77,21 @@ function WelcomeSection() {
             예약하기
           </Link>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-3 md:gap-4">
           <ImagePlaceholder
             src="/images/interior-ocean.jpg"
             alt="거실과 오션뷰"
-            className="col-span-2 h-72 rounded-lg hover-zoom"
+            className="col-span-2 h-80 md:h-72 rounded-lg hover-zoom"
           />
           <ImagePlaceholder
             src="/images/exterior/02.jpg"
             alt="윤슬 앞 일출봉 전경"
-            className="h-48 rounded-lg hover-zoom"
+            className="h-56 md:h-48 rounded-lg hover-zoom"
           />
           <ImagePlaceholder
             src="/images/gwangchigi.jpg"
             alt="광치기 해변과 성산일출봉"
-            className="h-48 rounded-lg hover-zoom"
+            className="h-56 md:h-48 rounded-lg hover-zoom"
           />
         </div>
       </div>
@@ -284,9 +284,14 @@ function NearbySection() {
 }
 
 function SceneryGallery() {
-  const photos = Array.from({ length: 7 }, (_, i) =>
-    `/images/exterior/${String(i + 1).padStart(2, "0")}.jpg`
-  );
+  const photos: string[] = [
+    ...Array.from({ length: 7 }, (_, i) =>
+      `/images/exterior/${String(i + 1).padStart(2, "0")}.jpg`
+    ),
+    "/images/yunseul-exterior.jpg",
+    "/images/gwangchigi.jpg",
+    "/images/interior-ocean.jpg",
+  ];
   return (
     <section className="py-24 md:py-32 bg-[var(--background)]">
       <div className="max-w-6xl mx-auto px-6">
@@ -302,17 +307,19 @@ function SceneryGallery() {
             창문을 열고 발걸음을 옮기면 닿는, 윤슬을 둘러싼 제주의 자연.
           </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4">
           {photos.map((src, i) => (
             <div
               key={src}
-              className={`relative overflow-hidden hover-zoom aspect-[4/3] ${
-                i === 0 ? "col-span-2 md:col-span-2 md:row-span-2 md:aspect-auto" : ""
+              className={`relative overflow-hidden hover-zoom ${
+                i === 0
+                  ? "col-span-2 aspect-[4/3] md:row-span-2 md:aspect-auto"
+                  : "aspect-[3/4] md:aspect-[4/3]"
               }`}
             >
               <ImagePlaceholder
                 src={src}
-                alt={`윤슬 외부 전경 ${i + 1}`}
+                alt={`윤슬 풍경 ${i + 1}`}
                 className="absolute inset-0"
                 showLabel={false}
               />
