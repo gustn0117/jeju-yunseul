@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -55,9 +55,11 @@ html {
 }
 ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.28); background-clip: padding-box; }
 
+/* Heading font — bold gothic. Class name kept for compatibility with
+   existing markup; visually this is now Noto Sans KR bold, not serif. */
 .font-serif {
-  font-family: 'Noto Serif KR', serif;
-  font-weight: 400;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 700;
   font-feature-settings: "kern", "liga", "calt";
 }
 
@@ -160,8 +162,8 @@ html {
   /* Drop cap — applies to first paragraph after the heading.
      Use `.has-drop-cap` on the wrapper. */
   .has-drop-cap > p:first-of-type::first-letter {
-    font-family: 'Noto Serif KR', serif;
-    font-weight: 500;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
     float: left;
     font-size: 3.4em;
     line-height: 1;

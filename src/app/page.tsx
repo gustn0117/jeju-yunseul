@@ -409,7 +409,7 @@ function DirectionsSection() {
               <h3 className="font-serif text-xl mb-4">문의</h3>
               <p className="opacity-70 text-[15px] leading-relaxed">
                 기타 문의는{" "}
-                <span className="text-[var(--accent)] font-medium">010-5452-2323</span>
+                <span className="text-[var(--accent)] font-medium">010-2979-6238</span>
                 으로 연락주시면 성실히 답변 드리겠습니다 (텍스트만 가능).
               </p>
             </div>

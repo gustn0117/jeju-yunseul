@@ -113,10 +113,10 @@ function ReserveForm() {
               홈으로 돌아가기
             </Link>
             <a
-              href="tel:010-5452-2323"
+              href="tel:010-2979-6238"
               className="inline-block text-sm tracking-widest opacity-70 hover:opacity-100 transition-opacity"
             >
-              010-5452-2323
+              010-2979-6238
             </a>
           </div>
         </div>
@@ -191,10 +191,10 @@ function ReserveForm() {
                 Direct Contact
               </p>
               <a
-                href="tel:010-5452-2323"
+                href="tel:010-2979-6238"
                 className="font-serif text-xl md:text-2xl tracking-wide block hover:opacity-60 transition-opacity"
               >
-                010-5452-2323
+                010-2979-6238
               </a>
               <p className="text-xs opacity-50 mt-2">텍스트 문의만 가능</p>
             </div>

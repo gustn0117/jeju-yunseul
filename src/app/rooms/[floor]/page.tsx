@@ -506,7 +506,7 @@ export default function RoomDetail({
                 </div>
               ) : (
                 <p className="text-sm opacity-70 leading-relaxed">
-                  가격 문의: <span className="font-medium">010-5452-2323</span>
+                  가격 문의: <span className="font-medium">010-2979-6238</span>
                 </p>
               )}
               <div className="mt-10 pt-10 border-t border-white/10">
