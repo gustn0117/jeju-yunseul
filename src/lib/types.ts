@@ -38,3 +38,19 @@ export const STATUS_LABELS: Record<ReservationStatus, string> = {
   cancelled: "취소",
   completed: "완료",
 };
+
+export type RoomSlug = "2f" | "3f" | "4f";
+
+export const ROOM_SLUGS: RoomSlug[] = ["2f", "3f", "4f"];
+
+export type RoomPhoto = {
+  id: number;
+  room: RoomSlug;
+  storage_path: string | null;
+  public_url: string;
+  is_hero: boolean;
+  sort_order: number;
+  filename: string | null;
+  created_at: string;
+  updated_at: string;
+};

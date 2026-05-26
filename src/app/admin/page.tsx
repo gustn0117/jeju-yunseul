@@ -3,9 +3,11 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import type { Reservation, ReservationStatus } from "@/lib/types";
 import { ROOM_LABELS, STATUS_LABELS } from "@/lib/types";
+import PhotosTab from "./PhotosTab";
 
 type FilterStatus = "all" | ReservationStatus;
 type View = "list" | "calendar";
+type MainTab = "reservations" | "photos";
 
 const ROOMS_ORDER: ("2f" | "3f" | "4f")[] = ["2f", "3f", "4f"];
 
@@ -17,6 +19,7 @@ export default function AdminPage() {
   const [filterRoom, setFilterRoom] = useState<"all" | "2f" | "3f" | "4f">("all");
   const [error, setError] = useState<string | null>(null);
   const [view, setView] = useState<View>("list");
+  const [mainTab, setMainTab] = useState<MainTab>("reservations");
   const [selected, setSelected] = useState<Reservation | null>(null);
 
   const loadReservations = useCallback(async () => {
@@ -120,7 +123,7 @@ export default function AdminPage() {
             제주 윤슬 <span className="opacity-40 text-sm ml-2">어드민</span>
           </h1>
           <div className="flex items-center gap-6">
-            <ViewToggle view={view} onChange={setView} />
+            {mainTab === "reservations" && <ViewToggle view={view} onChange={setView} />}
             <button
               onClick={onLogout}
               className="text-xs tracking-widest uppercase opacity-60 hover:opacity-100"
@@ -129,44 +132,58 @@ export default function AdminPage() {
             </button>
           </div>
         </div>
+        <div className="max-w-7xl mx-auto px-6 flex gap-1 border-t border-[var(--hairline,#f0f0f0)]">
+          <TabButton active={mainTab === "reservations"} onClick={() => setMainTab("reservations")}>
+            예약
+          </TabButton>
+          <TabButton active={mainTab === "photos"} onClick={() => setMainTab("photos")}>
+            사진
+          </TabButton>
+        </div>
       </header>
 
-      <section className="max-w-7xl mx-auto px-6 py-10">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-10">
-          <Stat label="전체" value={counts.total} />
-          <Stat label="대기" value={counts.pending} tone="amber" />
-          <Stat label="확정" value={counts.confirmed} tone="green" />
-          <Stat label="취소" value={counts.cancelled} tone="red" />
-          <Stat label="완료" value={counts.completed} tone="blue" />
-        </div>
+      {mainTab === "reservations" ? (
+        <section className="max-w-7xl mx-auto px-6 py-10">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-10">
+            <Stat label="전체" value={counts.total} />
+            <Stat label="대기" value={counts.pending} tone="amber" />
+            <Stat label="확정" value={counts.confirmed} tone="green" />
+            <Stat label="취소" value={counts.cancelled} tone="red" />
+            <Stat label="완료" value={counts.completed} tone="blue" />
+          </div>
 
-        {view === "list" ? (
-          <ListView
-            reservations={filtered}
-            total={reservations.length}
-            loading={loading}
-            filterStatus={filterStatus}
-            setFilterStatus={setFilterStatus}
-            filterRoom={filterRoom}
-            setFilterRoom={setFilterRoom}
-            onRefresh={loadReservations}
-            onUpdateStatus={updateStatus}
-            onRemove={removeReservation}
-          />
-        ) : (
-          <CalendarView
-            reservations={reservations}
-            onSelect={(r) => setSelected(r)}
-          />
-        )}
+          {view === "list" ? (
+            <ListView
+              reservations={filtered}
+              total={reservations.length}
+              loading={loading}
+              filterStatus={filterStatus}
+              setFilterStatus={setFilterStatus}
+              filterRoom={filterRoom}
+              setFilterRoom={setFilterRoom}
+              onRefresh={loadReservations}
+              onUpdateStatus={updateStatus}
+              onRemove={removeReservation}
+            />
+          ) : (
+            <CalendarView
+              reservations={reservations}
+              onSelect={(r) => setSelected(r)}
+            />
+          )}
 
-        <p className="mt-10 text-xs opacity-40">
-          객실 라벨:{" "}
-          {Object.entries(ROOM_LABELS)
-            .map(([k, v]) => `${k.toUpperCase()}=${v}`)
-            .join(" · ")}
-        </p>
-      </section>
+          <p className="mt-10 text-xs opacity-40">
+            객실 라벨:{" "}
+            {Object.entries(ROOM_LABELS)
+              .map(([k, v]) => `${k.toUpperCase()}=${v}`)
+              .join(" · ")}
+          </p>
+        </section>
+      ) : (
+        <section className="max-w-7xl mx-auto px-6 py-10">
+          <PhotosTab />
+        </section>
+      )}
 
       {selected && (
         <DetailModal
@@ -749,6 +766,30 @@ function ViewToggle({
         Calendar
       </button>
     </div>
+  );
+}
+
+function TabButton({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`px-5 py-3 text-sm tracking-wider border-b-2 -mb-px transition-colors ${
+        active
+          ? "border-black text-black"
+          : "border-transparent opacity-50 hover:opacity-100"
+      }`}
+    >
+      {children}
+    </button>
   );
 }
 

@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -12,6 +10,11 @@ import {
   FishIcon,
   ShipIcon,
 } from "./components/Icons";
+import { getAllRoomMedia } from "@/lib/photos";
+import type { RoomSlug } from "@/lib/types";
+
+// 어드민에서 대표 사진을 바꾸면 즉시 반영되도록 매 요청 시 렌더.
+export const dynamic = "force-dynamic";
 
 function HeroSection() {
   return (
@@ -99,10 +102,10 @@ function WelcomeSection() {
   );
 }
 
-function RoomsSection() {
+function RoomsSection({ heroes }: { heroes: Record<RoomSlug, string> }) {
   const rooms = [
     {
-      slug: "2f",
+      slug: "2f" as RoomSlug,
       floor: "2F",
       name: "비치테라스",
       type: "2Bed / 2Bath",
@@ -111,7 +114,7 @@ function RoomsSection() {
       tags: ["테라스", "오션뷰", "바베큐"],
     },
     {
-      slug: "3f",
+      slug: "3f" as RoomSlug,
       floor: "3F",
       name: "오션테라스",
       type: "1Bed / 1Bath",
@@ -120,7 +123,7 @@ function RoomsSection() {
       tags: ["테라스", "오션뷰", "바베큐"],
     },
     {
-      slug: "4f",
+      slug: "4f" as RoomSlug,
       floor: "4F",
       name: "스카이테라스",
       type: "1Bed / 1Bath",
@@ -150,7 +153,7 @@ function RoomsSection() {
             >
               <Link href={`/rooms/${room.slug}`} className="block hover-zoom relative">
                 <ImagePlaceholder
-                  src={`/images/room-${room.slug}-hero.jpg`}
+                  src={heroes[room.slug]}
                   alt={`${room.floor} ${room.name}`}
                   className="h-64"
                 />
@@ -430,13 +433,19 @@ function DirectionsSection() {
   );
 }
 
-export default function Home() {
+export default async function Home() {
+  const media = await getAllRoomMedia();
+  const heroes: Record<RoomSlug, string> = {
+    "2f": media["2f"].hero,
+    "3f": media["3f"].hero,
+    "4f": media["4f"].hero,
+  };
   return (
     <main>
       <Header />
       <HeroSection />
       <WelcomeSection />
-      <RoomsSection />
+      <RoomsSection heroes={heroes} />
       <NearbySection />
       <SceneryGallery />
       <ReviewSection />

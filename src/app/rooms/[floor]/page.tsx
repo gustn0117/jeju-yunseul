@@ -1,12 +1,11 @@
-"use client";
-
-import { use } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ImagePlaceholder from "../../components/ImagePlaceholder";
 import { BedIcon, BathIcon, PersonIcon, ClockIcon } from "../../components/Icons";
+import { getRoomMedia } from "@/lib/photos";
+import { ROOM_SLUGS, type RoomSlug } from "@/lib/types";
 
 type Season = "비수기" | "일반기" | "성수기";
 type Price = { weekday: string; weekend: string };
@@ -26,9 +25,7 @@ type Room = {
   checkOut: string;
   prices: Record<Season, Price> | null;
   heroLabel: string;
-  poster?: string;
   video?: string;
-  gallery?: string[];
 };
 
 const ROOMS: Record<string, Room> = {
@@ -74,16 +71,7 @@ const ROOMS: Record<string, Room> = {
       성수기: { weekday: "370,000원", weekend: "390,000원" },
     },
     heroLabel: "2F 비치테라스",
-    poster: "/images/room-2f-hero.jpg",
     video: "/videos/room-2f.mp4",
-    gallery: [
-      ...Array.from({ length: 8 }, (_, i) =>
-        `/images/rooms/2f/${String(i + 1).padStart(2, "0")}.jpg`
-      ),
-      "/images/rooms/common/01.jpg",
-      "/images/rooms/common/02.jpg",
-      "/images/rooms/common/03.jpg",
-    ],
   },
   "3f": {
     floor: "3F",
@@ -126,16 +114,7 @@ const ROOMS: Record<string, Room> = {
       성수기: { weekday: "270,000원", weekend: "290,000원" },
     },
     heroLabel: "3F 오션테라스",
-    poster: "/images/room-3f-hero.jpg",
     video: "/videos/room-3f.mp4",
-    gallery: [
-      ...Array.from({ length: 24 }, (_, i) =>
-        `/images/rooms/3f/${String(i + 1).padStart(2, "0")}.jpg`
-      ),
-      "/images/rooms/common/01.jpg",
-      "/images/rooms/common/02.jpg",
-      "/images/rooms/common/03.jpg",
-    ],
   },
   "4f": {
     floor: "4F",
@@ -175,16 +154,7 @@ const ROOMS: Record<string, Room> = {
     checkOut: "10:00",
     prices: null,
     heroLabel: "4F 스카이테라스",
-    poster: "/images/room-4f-hero.jpg",
     video: "/videos/room-4f.mp4",
-    gallery: [
-      ...Array.from({ length: 22 }, (_, i) =>
-        `/images/rooms/4f/${String(i + 1).padStart(2, "0")}.jpg`
-      ),
-      "/images/rooms/common/01.jpg",
-      "/images/rooms/common/02.jpg",
-      "/images/rooms/common/03.jpg",
-    ],
   },
 };
 
@@ -194,15 +164,18 @@ const FLOOR_ORDER: { key: string; label: string }[] = [
   { key: "4f", label: "4F 스카이테라스" },
 ];
 
-export default function RoomDetail({
+export default async function RoomDetail({
   params,
 }: {
   params: Promise<{ floor: string }>;
 }) {
-  const { floor } = use(params);
+  const { floor } = await params;
   const key = floor.toLowerCase();
   const room = ROOMS[key];
   if (!room) notFound();
+  if (!ROOM_SLUGS.includes(key as RoomSlug)) notFound();
+
+  const media = await getRoomMedia(key as RoomSlug);
 
   return (
     <main>
@@ -212,7 +185,7 @@ export default function RoomDetail({
         <ImagePlaceholder
           className="absolute inset-0 ken-burns"
           showLabel={false}
-          src={room.poster ?? "/images/interior-ocean.jpg"}
+          src={media.hero}
           alt={room.heroLabel}
           priority
         />
@@ -323,7 +296,7 @@ export default function RoomDetail({
                   controls
                   playsInline
                   preload="metadata"
-                  poster={room.poster}
+                  poster={media.hero}
                 >
                   <source src={room.video} type="video/mp4" />
                 </video>
@@ -333,7 +306,7 @@ export default function RoomDetail({
         </section>
       )}
 
-      {room.gallery && room.gallery.length > 0 && (
+      {media.gallery.length > 0 && (
         <section className="pb-20 md:pb-28">
           <div className="max-w-6xl mx-auto px-6">
             <div className="flex items-end justify-between mb-10 md:mb-12 border-b border-[var(--foreground)]/10 pb-6">
@@ -346,13 +319,13 @@ export default function RoomDetail({
                 </h2>
               </div>
               <p className="text-xs tracking-[0.2em] uppercase opacity-50">
-                {String(room.gallery.length).padStart(2, "0")} Photos
+                {String(media.gallery.length).padStart(2, "0")} Photos
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
-              {room.gallery.map((src, i) => (
+              {media.gallery.map((photo, i) => (
                 <div
-                  key={src}
+                  key={photo.id}
                   className={`relative overflow-hidden hover-zoom ${
                     i === 0
                       ? "col-span-2 aspect-[4/3] md:col-span-1 md:aspect-[4/3]"
@@ -360,7 +333,7 @@ export default function RoomDetail({
                   }`}
                 >
                   <ImagePlaceholder
-                    src={src}
+                    src={photo.public_url}
                     alt={`${room.heroLabel} 갤러리 ${i + 1}`}
                     className="absolute inset-0"
                     showLabel={false}
