@@ -5,11 +5,16 @@ export const PHOTO_BUCKET = "room-photos";
 
 // 마이그레이션을 아직 적용 못 한 경우를 대비한 기본값. DB가 비었거나 오류여도
 // 사이트는 정상 렌더되도록 한다.
+// 4F 갤러리: 14, 15, 17 번은 쭈글거리는 침대 컷이라 제외 (2026-06-11)
+const FOUR_F_NUMS = Array.from({ length: 42 }, (_, i) => i + 1).filter(
+  (n) => ![14, 15, 17].includes(n),
+);
+
 const FALLBACK: Record<RoomSlug, { hero: string; gallery: string[] }> = {
   "2f": {
     hero: "/images/room-2f-hero.jpg",
     gallery: [
-      ...Array.from({ length: 8 }, (_, i) => `/images/rooms/2f/${String(i + 1).padStart(2, "0")}.jpg`),
+      ...Array.from({ length: 19 }, (_, i) => `/images/rooms/2f/${String(i + 1).padStart(2, "0")}.jpg`),
       "/images/rooms/common/01.jpg",
       "/images/rooms/common/02.jpg",
       "/images/rooms/common/03.jpg",
@@ -18,7 +23,7 @@ const FALLBACK: Record<RoomSlug, { hero: string; gallery: string[] }> = {
   "3f": {
     hero: "/images/room-3f-hero.jpg",
     gallery: [
-      ...Array.from({ length: 24 }, (_, i) => `/images/rooms/3f/${String(i + 1).padStart(2, "0")}.jpg`),
+      ...Array.from({ length: 34 }, (_, i) => `/images/rooms/3f/${String(i + 1).padStart(2, "0")}.jpg`),
       "/images/rooms/common/01.jpg",
       "/images/rooms/common/02.jpg",
       "/images/rooms/common/03.jpg",
@@ -27,7 +32,7 @@ const FALLBACK: Record<RoomSlug, { hero: string; gallery: string[] }> = {
   "4f": {
     hero: "/images/room-4f-hero.jpg",
     gallery: [
-      ...Array.from({ length: 22 }, (_, i) => `/images/rooms/4f/${String(i + 1).padStart(2, "0")}.jpg`),
+      ...FOUR_F_NUMS.map((n) => `/images/rooms/4f/${String(n).padStart(2, "0")}.jpg`),
       "/images/rooms/common/01.jpg",
       "/images/rooms/common/02.jpg",
       "/images/rooms/common/03.jpg",

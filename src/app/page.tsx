@@ -26,7 +26,7 @@ function HeroSection() {
         alt="제주 윤슬 거실과 오션뷰"
         priority
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/30 to-black/55" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/5 to-black/30" />
       <div className="relative z-10 text-center text-white px-4">
         <p className="text-[10px] md:text-xs tracking-[0.4em] uppercase opacity-80 mb-6 fade-in-up text-veil">
           A Private Retreat · Jeju
@@ -346,8 +346,7 @@ function ReviewSection() {
         src="/images/gwangchigi.jpg"
         alt="광치기 해변에서 바라본 성산일출봉"
       />
-      <div className="absolute inset-0 bg-black/70" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/35 to-black/45" />
 
       <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
         <p className="text-xs tracking-[0.3em] uppercase opacity-70 mb-6">
